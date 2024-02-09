@@ -1,5 +1,13 @@
+<?php
+require __DIR__ . "/../../app/Controller/RegisterController.php";
+
+use app\Controller\RegisterController;
+
+$instance = new RegisterController();
+
+?>
 <h2>Register form:</h2>
-<form action="" method="post">
+<form action="<?= $instance->handleFormSubmission(); ?>" method="post">
     <div class="form-group">
         <label for="InputEmail">Email address</label>
         <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email">

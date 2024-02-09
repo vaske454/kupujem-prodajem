@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Starting the DDEV project
+ddev start
+
+# Checking if the 'user' table exists in the database
+if ! ddev mysql -e "SELECT 1 FROM user LIMIT 1" >/dev/null 2>&1; then
+    # Creating the 'user' table if it doesn't exist
+    ddev mysql -e "CREATE TABLE user (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        email VARCHAR(255) NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );"
+fi
+
+# Checking if the 'user_log' table exists in the database
+if ! ddev mysql -e "SELECT 1 FROM user_log LIMIT 1" >/dev/null 2>&1; then
+    # Creating the 'user_log' table if it doesn't exist
+    ddev mysql -e "CREATE TABLE user_log (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        action VARCHAR(255) NOT NULL,
+        user_id INT NOT NULL,
+        log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES user(id)
+    );"
+fi
