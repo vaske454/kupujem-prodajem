@@ -117,7 +117,7 @@ class UserModel implements DatabaseInterface
      *
      * @return void
      */
-    private function sendEmail($email): void
+    private function sendEmail(string $email): void
     {
         $to = $email;
         $subject = 'Dobro došli';
