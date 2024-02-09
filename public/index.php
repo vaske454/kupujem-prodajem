@@ -1,9 +1,9 @@
 <?php
 // Including autoload.php which will automatically load classes using namespaces
-require_once "autoload.php";
+require_once "../vendor/autoload.php";
 
-// Path to the html.php file in the templates/layout directory
-$file = "templates/layout/html.php";
+// Path to the html.php file in the resources/views/layout directory
+$file = "../resources/views/layout/html.php";
 
 // Checking if the file exists and is readable
 if (file_exists($file) && is_readable($file)) {
