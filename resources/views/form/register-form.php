@@ -1,24 +1,8 @@
 <?php
-require __DIR__ . "/../../../app/Controller/RegisterController.php";
+use app\Controller\FormHandler;
 
-use app\Controller\RegisterController;
-
-$instance = new RegisterController();
-
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['formSubmitted'])) {
-    $result = $instance->handleFormSubmission();
-    // Check if the result is in JSON format and parse it
-    $jsonResult = json_decode($result, true);
-    if ($jsonResult && isset($jsonResult['success'])) {
-        // If the result is successful, display a message as a JavaScript alert
-        if ($jsonResult['success']) {
-            echo '<script>alert("Registration successful. Please take a look on your email: ");</script>';
-        } else {
-            // If an error occurred, display an error message as a JavaScript alert
-            echo '<script>alert("Registration failed. Error: ' . $jsonResult['error'] . '");</script>';
-        }
-    }
-}
+$formHandler = new FormHandler();
+$formHandler->handleRegistrationForm();
 ?>
 <h2>Register form:</h2>
 <form action="" method="post">
